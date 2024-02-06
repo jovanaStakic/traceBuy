@@ -1,0 +1,7 @@
+{
+  "name": "TraceBuy",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

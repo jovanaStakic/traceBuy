@@ -1,0 +1,31 @@
+<img src="../../assets/header.png">
+<br>
+<ion-content class="ion-padding" >
+  <ion-item class="ion-text-center ion-margin-top">
+  <ion-label class="label_title">Prijavi se</ion-label>
+</ion-item>
+  
+ 
+  <form [formGroup]="credentials" (ngSubmit)="login()" class="ion-padding">
+  
+   
+    <ion-input label="Email" label-placement="floating" type="email" fill="solid" placeholder="Email" formControlName="email"></ion-input>  
+    <ion-item class="warning" *ngIf="credentials.get('email')?.invalid && credentials.get('email')?.touched">
+    <ion-label color="danger" ><ion-icon name="alert-circle-outline"></ion-icon> Email mora biti odgovarajućem formatu!</ion-label>
+    </ion-item>
+   
+ <br>
+  
+ <ion-input label="Password" type="password" label-placement="floating" fill="solid" placeholder="*************" formControlName="password"></ion-input>  
+   <ion-item class="warning" *ngIf="credentials.get('password')?.invalid && credentials.get('password')?.touched">
+ <ion-label color="danger"><ion-icon name="alert-circle-outline"></ion-icon>Lozinka mora biti duza od 6 karaktera!</ion-label>
+   </ion-item>
+  
+  <ion-button class="ion-margin-top" expand="block" type="submit">Prijavi se</ion-button>
+ 
+  </form>
+  <ion-item class="ion-text-end">
+  <ion-label>Nemaš nalog? <a (click)="navigateToRegister()">Registruj se</a></ion-label>
+</ion-item>
+  </ion-content>
+  <img src="../../assets/footer.png">

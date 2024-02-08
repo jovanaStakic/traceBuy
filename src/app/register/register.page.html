@@ -1,0 +1,35 @@
+<img src="../../assets/header.png">
+
+<ion-content class="ion-padding" >
+  <ion-item class="ion-text-center ion-margin-top">
+  <ion-label class="label_title">Registruj se</ion-label>
+</ion-item>
+  <form [formGroup]="credentials" (ngSubmit)="register()" class="ion-padding">
+  
+   
+    <ion-input label="Email" label-placement="floating" type="email" fill="solid" placeholder="Email" formControlName="email"></ion-input>  
+    
+    <ion-label class="warning" *ngIf="credentials.get('email')?.invalid && credentials.get('email')?.touched" color="danger" ><ion-icon name="alert-circle-outline"></ion-icon> Email mora biti odgovarajućem formatu!</ion-label>
+    
+   
+ 
+  
+ <ion-input class="ion-margin-top" label="Lozinka" type="password" label-placement="floating" fill="solid" placeholder="*************" formControlName="password"></ion-input>  
+
+ <ion-label class="warning" *ngIf="credentials.get('password')?.invalid && credentials.get('password')?.touched" color="danger"><ion-icon name="alert-circle-outline"></ion-icon>Lozinka mora biti duza od 6 karaktera!</ion-label>
+ 
+   
+   
+   <ion-input class="ion-margin-top" label="Ponovi lozinku" type="password" label-placement="floating" fill="solid" placeholder="*************" formControlName="confirm_password"></ion-input>  
+   
+ <ion-label class="warning" *ngIf="credentials.get('confirm_password')?.invalid && credentials.get('confirm_password')?.touched" color="danger"><ion-icon name="alert-circle-outline"></ion-icon>Lozinke moraju da se podudaraju!</ion-label>
+ 
+
+  <ion-button class="ion-margin-top" expand="block" type="submit">Registruj se</ion-button>
+ 
+  </form>
+  <ion-item class="ion-text-end">
+  <ion-label >Imaš nalog? <a (click)="navigateToLogin()">Prijavi se</a></ion-label>
+</ion-item>
+  </ion-content>
+  <img src="../../assets/footer.png">

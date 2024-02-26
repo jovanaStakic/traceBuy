@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>products</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list *ngFor="let proizvod of proizvodi">
+    <ion-card>
+      <ion-card-header>
+        <div class="date">
+          <ion-card-title color="primary" class="ion-float-left">
+            <strong>{{ proizvod.naziv }}</strong>
+          </ion-card-title>
+       </div>   
+       
+        <p>{{ proizvod.opis }}</p>
+      </ion-card-header>
+
+      <ion-card-content class="description">
+        {{ proizvod.cena }}
+      </ion-card-content>
+      <ion-card-content class="description">
+        {{ proizvod.slika }}
+      </ion-card-content>
+     
+    
+    </ion-card>
+  </ion-list>
+</ion-content>

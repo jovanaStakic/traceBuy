@@ -2,9 +2,9 @@ import { Component, OnInit,Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import{Marker} from '@capacitor/google-maps';
-import { Prodavnica } from '../domain/prodavnica.model';
 import { ProdavniceDataService } from '../services/prodavnice-data.service';
+import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-map-modal',
@@ -16,13 +16,18 @@ import { ProdavniceDataService } from '../services/prodavnice-data.service';
 export class MapModalPage implements OnInit {
 @Input() marker:any;
 prodavnica!:any;
-  constructor(private dataService:ProdavniceDataService) { }
+idProdavnice!:number;
+
+  constructor(private dataService:ProdavniceDataService,private router:Router,private modalCtrl:ModalController) { }
 
   ngOnInit() {
     this.dataService.getProdavnicaByName(this.marker.title).subscribe((prodavnica)=>{
       this.prodavnica=prodavnica;
     });
-    console.log(this.prodavnica);
   }
-
+  pogledajProdavnicu(){
+    this.modalCtrl.dismiss();
+    this.idProdavnice=this.prodavnica.id;
+    this.router.navigate(['/products'], { queryParams: { id: this.idProdavnice } });
+  }
 }

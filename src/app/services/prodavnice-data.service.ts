@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection,collectionData, query, where } from '@angular/fire/firestore';
-import { Prodavnica } from '../domain/prodavnica.model';
+import { Firestore, collection,collectionData, getDoc, getDocs, query, where } from '@angular/fire/firestore';
+import { Prodavnica,Proizvod } from '../domain/prodavnica.model';
 import {Observable, map} from 'rxjs';
 
 @Injectable({
@@ -31,4 +31,24 @@ export class ProdavniceDataService {
       map(prodavnice => prodavnice[0])
     );
   }
+
+async getProizvodiIzProdavnice(idProdavnice:string){
+  const proizvodi:Proizvod[]=[];
+
+
+  const querySnapshot = await getDocs(collection(this.firestore, "prodavnice", `${idProdavnice}`, "proizvodi"));
+  querySnapshot.forEach((doc) => {
+    const data = doc.data();
+      const proizvod: Proizvod = {
+        naziv: data['naziv'],
+        cena: data['cena'],
+        id: data['id'],
+        slika:data['slika'],
+        opis: data['opis']
+      };
+      proizvodi.push(proizvod);
+    
+  });
+  return proizvodi;
+}
 }

@@ -5,11 +5,11 @@ describe('MapModalPage', () => {
   let component: MapModalPage;
   let fixture: ComponentFixture<MapModalPage>;
 
-  beforeEach(async(() => {
+  beforeEach(async() => {
     fixture = TestBed.createComponent(MapModalPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  }));
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();

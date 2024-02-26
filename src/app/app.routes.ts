@@ -20,4 +20,13 @@ export const routes: Routes = [
     redirectTo: '/login',
     pathMatch: 'full'
   },
+  {
+    path: 'map-modal',
+    loadComponent: () => import('./map-modal/map-modal.page').then( m => m.MapModalPage)
+  },
+  {
+    path: 'products',
+    loadComponent: () => import('./productsPage/products/products.page').then( m => m.ProductsPage)
+  },
+  
 ];

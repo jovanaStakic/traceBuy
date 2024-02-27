@@ -7,6 +7,7 @@ import { MapModalPage } from '../map-modal/map-modal.page';
 import { ProdavniceDataService } from '../services/prodavnice-data.service';
 import { Prodavnica } from '../domain/prodavnica.model';
 
+
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',

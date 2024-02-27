@@ -10,6 +10,7 @@ import { getApp, initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, indexedDBLocalPersistence, initializeAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { Capacitor } from '@capacitor/core';
+import { provideStorage, getStorage } from '@angular/fire/storage';
 
 if (environment.production) {
   enableProdMode();
@@ -44,6 +45,8 @@ bootstrapApplication(AppComponent, {
       }
       )
     ),
+    importProvidersFrom(provideStorage(() => getStorage())),
     importProvidersFrom(provideFirestore(()=>getFirestore())),
+    
   ],
 });

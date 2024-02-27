@@ -4,6 +4,7 @@ export interface Proizvod{
     opis:string;
     cena:number;
     slika:string;
+    kolicina?:number
 }
 export interface Prodavnica{
     id:number;

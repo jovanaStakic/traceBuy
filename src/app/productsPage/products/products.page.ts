@@ -30,13 +30,18 @@ export class ProductsPage implements OnInit {
       this.idProdavnice = params['id'];
       this.dataService.getProizvodiIzProdavnice(this.idProdavnice).then((proizvodi)=>{
         this.proizvodi=proizvodi;
+        this.proizvodi.forEach((proizvod)=>{
+          proizvod.kolicina=1;
+        })
       })
+     
     });
     
     addIcons(ionIcons);
   }
 
   ngOnInit() {
+   
    // this.slikaUrl = this.getSlikaUrl('gs://tracebuy-fd4ef.appspot.com/pexels-alex-kinkate-205926.jpg');
   }
   getSlikaUrl(gsUrl: string) {
@@ -46,13 +51,13 @@ export class ProductsPage implements OnInit {
   nazad() {
     this.location.back();
   }
-  smanjiKolicinu(){
-    if(this.kolicina>1)
-    this.kolicina--;
+  smanjiKolicinu(proizvod:Proizvod){
+    if((proizvod.kolicina ?? 0)>1)
+    proizvod.kolicina = (proizvod.kolicina ?? 0) - 1;
   }
-  povecajKolicinu(){
-    if(this.kolicina<20)
-    this.kolicina++;
+  povecajKolicinu(proizvod:Proizvod){
+    if((proizvod.kolicina ?? 0)<20)
+    proizvod.kolicina = (proizvod.kolicina ?? 0) + 1;
   }
   dodajUKorpu(){
 

@@ -51,5 +51,7 @@
 	<string>We want your current position</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>To show your location</string>
+	<key>NSCameraUsageDescription</key>
+<string>The app enables the scanning of various barcodes.</string>
 </dict>
 </plist>

@@ -34,6 +34,7 @@
                 android:resource="@xml/file_paths"></meta-data>
         </provider>
         <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyDwA1KiLg6Bw3UIlbabN26ZlBI_QjauuOQ"/>
+        <meta-data android:name="com.google.mlkit.vision.DEPENDENCIES" android:value="barcode_ui"/>
     </application>
 
     <!-- Permissions -->
@@ -41,5 +42,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESSS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESSS_FINE_LOCATION"/>
-    
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT"/>
 </manifest>

@@ -29,7 +29,7 @@ export class Tab1Page {
   async createMap() {
     this.map = await GoogleMap.create({
       id: 'my-map',
-      apiKey: environment.mapsKey,
+      apiKey: 'AIzaSyDwA1KiLg6Bw3UIlbabN26ZlBI_QjauuOQ',
       element: this.mapRef.nativeElement,
       forceCreate: true,
       config: {

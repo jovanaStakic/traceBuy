@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonList, IonLabel, IonItem, IonFab, IonFabButton, IonIcon } from '@ionic/angular/standalone';
+import {  IonTitle, IonContent, IonInput, IonList, IonLabel, IonItem, IonFab, IonFabButton, IonIcon } from '@ionic/angular/standalone';
 import { Barcode,BarcodeScanner } from '@capacitor-mlkit/barcode-scanning';
 import { AlertController } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
+import { ProductOriginService } from '../services/product-origin.service';
+import { ProizvodOrigin } from '../domain/proizvod-origin';
 
 @Component({
   selector: 'app-tab2',
@@ -13,16 +15,21 @@ import { IonicModule } from '@ionic/angular';
   imports: [ IonItem, IonLabel, IonInput, CommonModule,IonicModule]
 })
 export class Tab2Page {
-
+  proizvodOrigin!:ProizvodOrigin | null;
   isSupported = false;
+
+
+
+  
   barcodes: Barcode[] = [];
 
-  constructor(private alertController: AlertController) {}
+  constructor(private alertController: AlertController,private originService:ProductOriginService) {}
 
   ngOnInit() {
     BarcodeScanner.isSupported().then((result) => {
       this.isSupported = result.supported;
     });
+    
   }
 
   async scan(): Promise<void> {
@@ -31,8 +38,10 @@ export class Tab2Page {
       this.presentAlert();
       return;
     }
-    const { barcodes } = await BarcodeScanner.scan();
-    this.barcodes.push(...barcodes);
+    const barcodes  = await BarcodeScanner.scan();
+    
+    this.proizvodOrigin = await this.originService.getPorekloProizvoda(barcodes.barcodes[0].rawValue);
+    //this.originService.getPorekloProizvoda("USPwhgFVZq4KJwawBRal");
   }
 
   async requestPermissions(): Promise<boolean> {

@@ -8,6 +8,7 @@ import { Proizvod } from '../domain/prodavnica.model';
 import { CardService } from '../services/card.service';
 import { addIcons } from 'ionicons';
 import * as ionIcons from 'ionicons/icons';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab3',
@@ -20,7 +21,7 @@ import * as ionIcons from 'ionicons/icons';
 export class Tab3Page {
   proizvodi:Proizvod[];
   ukupno:number=0;
-  constructor(private cardService:CardService) { 
+  constructor(private cardService:CardService,private router:Router) { 
     addIcons(ionIcons);
     this.proizvodi=cardService.proizvodi;
   }
@@ -31,7 +32,8 @@ export class Tab3Page {
     });
      }
 
-     poruci(){
-
+     idiNaPoruci(){
+      this.router.navigate(['/order-form'],{ queryParams: { ukupno: this.ukupno } });
+      console.log("klik");
      }
 }

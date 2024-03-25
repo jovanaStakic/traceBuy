@@ -28,4 +28,8 @@ export class CardService {
         alert("Proizvod nije u korpi!");
       }
    }
+
+   clearCard(){
+    this.proizvodi=[];
+   }
 }

@@ -3,7 +3,7 @@
     <ion-title>{{marker.title}}</ion-title>
   </ion-toolbar>
   <ion-content>
-    <ion-item>{{prodavnica|json}}</ion-item>
+    <ion-item>{{prodavnica?.opis}}</ion-item>
   </ion-content>
   <ion-button class="ion-float-right ion-padding-end" color="primary" (click)="pogledajProdavnicu()">Pogledaj prodavnicu</ion-button> 
 </ion-header>

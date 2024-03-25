@@ -42,7 +42,7 @@ async getProizvodiIzProdavnice(idProdavnice:string){
       const proizvod: Proizvod = {
         naziv: data['naziv'],
         cena: data['cena'],
-        id: data['id'],
+        id: doc.id,
         slika:data['slika'],
         opis: data['opis']
       };

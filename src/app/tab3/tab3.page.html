@@ -25,5 +25,5 @@
       <ion-col size="9">Ukupno: </ion-col>
       <ion-col size="3">{{ukupno | currency:'RSD'}}</ion-col> </ion-row>
   </ion-grid>
-  <ion-button *ngIf="proizvodi.length>0" color="primary"  expand="block">Poruči</ion-button>
+  <ion-button *ngIf="proizvodi.length>0" color="primary" (click)="idiNaPoruci()" expand="block">Poruči</ion-button>
 </ion-content>

@@ -1,0 +1,15 @@
+.custom-input-line ion-input {
+    --border-width: 0 0 2px 0;
+    --border-color: var(--ion-color-primary);
+  }
+
+  .ion-text-wrap {
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ion-color-primary);
+  }
+  .x-dugme{
+    position: absolute;
+    top:0px;
+    right: 0px;
+}

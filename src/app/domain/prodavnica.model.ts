@@ -1,5 +1,5 @@
 export interface Proizvod{
-    id:number;
+    id:String;
     naziv:string;
     opis:string;
     cena:number;

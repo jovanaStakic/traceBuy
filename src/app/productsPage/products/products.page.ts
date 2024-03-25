@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { addIcons } from 'ionicons';
 import * as ionIcons from 'ionicons/icons';
 import {Observable} from 'rxjs';
+import { CardService } from 'src/app/services/card.service';
 
 
 
@@ -24,7 +25,8 @@ export class ProductsPage implements OnInit {
   slikaUrl!: Observable<string>;
   kolicina:number=1;
  
-  constructor(private dataService:ProdavniceDataService,private route:ActivatedRoute,private location:Location
+  constructor(private dataService:ProdavniceDataService,private route:ActivatedRoute,
+    private location:Location,private cardService:CardService
      ) {
     this.route.queryParams.subscribe(params => {
       this.idProdavnice = params['id'];
@@ -59,7 +61,8 @@ export class ProductsPage implements OnInit {
     if((proizvod.kolicina ?? 0)<20)
     proizvod.kolicina = (proizvod.kolicina ?? 0) + 1;
   }
-  dodajUKorpu(){
-
+  dodajUKorpu(proizvod:Proizvod){
+    this.cardService.addProizvodToCard(proizvod);
+    alert("Proizvod "+proizvod.naziv+" je dodat u korpu!");
   }
 }

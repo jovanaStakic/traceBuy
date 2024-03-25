@@ -2,7 +2,6 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent, ModalController } from '@ionic/angular/standalone';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { GoogleMap, Marker } from '@capacitor/google-maps';
-import { environment } from 'src/environments/environment';
 import { MapModalPage } from '../map-modal/map-modal.page';
 import { ProdavniceDataService } from '../services/prodavnice-data.service';
 import { Prodavnica } from '../domain/prodavnica.model';

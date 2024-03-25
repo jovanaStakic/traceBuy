@@ -1,6 +1,6 @@
 
 export interface Porudzbina{
-    id?:number,
+    id?:string,
     userDetails:{
         userId:string,
         ime:string,

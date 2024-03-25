@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, addDoc, collection, doc, setDoc } from '@angular/fire/firestore';
+import { Firestore, addDoc, collection, doc, documentId, getDocs, query, setDoc, where } from '@angular/fire/firestore';
 import { Porudzbina } from '../domain/porudzbina';
 import { getAuth } from '@angular/fire/auth';
 import { onAuthStateChanged } from '@firebase/auth';
@@ -47,6 +47,41 @@ export class PorudzbinaService {
   }
 
   async getAllOrdersByUser(){
+   
+    const auth = getAuth();
+    const porudzbine: Porudzbina[] = [];
+  
     
+    const user = auth.currentUser;
+    if (user) {
+      this.uid = user.uid;
+      const ref = collection(this.firestore, "porudzbine");
+      const q = query(ref, where("userDetails.userId", "==", this.uid));
+      const querySnapshot = await getDocs(q);
+  
+      querySnapshot.forEach(doc => {
+        const data = doc.data();
+        const porudzbina: Porudzbina = {
+          id: doc.id,
+          userDetails: {
+            userId: data['userDetails']['userId'],
+            ime: data['userDetails']['ime'],
+            prezime: data['userDetails']['prezime'],
+            adresa: data['userDetails']['adresa'],
+            telefon: data['userDetails']['telefon'],
+            email: data['userDetails']['email']
+          },
+          proizvodi: data['proizvodi'],
+          iznosZaNaplatu: data['iznosZaNaplatu'],
+          datumPoruzbine: data['datumPoruzbine']?.toDate(), // Dodao sam opciono lančanje za slučaj da datumPoruzbine može biti undefined
+          status: data['status']
+        };
+        porudzbine.push(porudzbina);
+      });
+    } else {
+      console.log("User is not signed in");
+    }
+    console.log(porudzbine);
+    return porudzbine;
   }
 }

@@ -1,9 +1,13 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Korpa</ion-title>
+    <ion-title>Moje porudžbine</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  Nije korpa
+  <ion-list *ngFor="let p of porudzbine">
+  <ion-item>
+    {{p.userDetails.ime}} {{p.userDetails.prezime}} {{p.datumPoruzbine| date}}
+  </ion-item>
+  </ion-list>
 </ion-content>

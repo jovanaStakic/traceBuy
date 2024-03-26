@@ -1,0 +1,17 @@
+.img-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+    margin: 20px 0;
+  }
+  
+  .profile-image {
+    width: 200px; 
+    height: 200px; 
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); 
+    margin-bottom: 20px; 
+  }

@@ -9,7 +9,18 @@ export class AuthService {
 
   constructor(private auth:Auth) { }
 
-
+  getUserId():Promise<String | null>{
+    return new Promise((resolve, reject) => {
+      const auth = getAuth();
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          resolve(user.uid);
+        } else {
+          resolve(null);
+        }
+      });
+    });
+  }
   getUserEmail(): Promise<string | null> {
     return new Promise((resolve, reject) => {
       const auth = getAuth();

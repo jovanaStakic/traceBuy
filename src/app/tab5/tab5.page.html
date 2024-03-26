@@ -5,9 +5,18 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="img-wrapper">
+  <div >
      <!-- <img src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png" />  -->
-    <img src="https://www.citypng.com/public/uploads/small/11639594314mvt074h0zt5cijvfdn7gqxbrya72bzqulyd5bhqhemb5iasfe7gbydmr2jxk8lcclcp6qrgaoiuiavf4sendwc3jvwadddqmli2d.png" /> 
+    <!--<img src="https://www.citypng.com/public/uploads/small/11639594314mvt074h0zt5cijvfdn7gqxbrya72bzqulyd5bhqhemb5iasfe7gbydmr2jxk8lcclcp6qrgaoiuiavf4sendwc3jvwadddqmli2d.png" /> -->
+
+    <div class="img-wrapper">
+      <img [src]="profileImageUrl"  class="profile-image" /> 
+      
+      <input type="file" #fileInput style="display: none" (change)="uploadImage($event)" accept="image/*"/>
+     
+      <ion-button (click)="fileInput.click()">Promeni profilnu sliku</ion-button>
+    </div>
+    <br>
     <ion-item>
       <ion-label>
         Email
@@ -16,7 +25,7 @@
     </ion-item>
     <ion-item>
       <ion-label>
-        Broj mojih porudzbina
+        Broj mojih porudžbina
       </ion-label>
      <ion-label slot="end">{{numOfOrders}}</ion-label>
     </ion-item>

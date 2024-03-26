@@ -19,10 +19,14 @@ export class Tab1Page {
   @ViewChild('map') mapRef!: ElementRef;
   map!: GoogleMap;
   markers: Marker[] = [];
+  mapInitialized = false;
   constructor(private modalCtrl: ModalController, private prodavniceServis: ProdavniceDataService) { }
 
   ionViewDidEnter() {
+    if(!this.mapInitialized){
     this.createMap();
+      this.mapInitialized=true;
+  }
   }
 
   async createMap() {
@@ -62,7 +66,7 @@ export class Tab1Page {
         this.markers.push(marker);
 
       })
-      const markeri = this.map.addMarkers(this.markers);
+      this.map.addMarkers(this.markers);
       this.map.setOnMarkerClickListener(async (marker) => {
         //console.log(marker);
         const modal = await this.modalCtrl.create({
@@ -79,49 +83,7 @@ export class Tab1Page {
     });
 
   }
-  attachMarkerInfo(marker: Promise<String>, prodavnica: Prodavnica) {
 
-  }
-  async openStoreDetails(prodavnica: Prodavnica) {
-    const modal = await this.modalCtrl.create({
-      component: MapModalPage,
-      componentProps: {
-        storeInfo: prodavnica,
-      },
-      breakpoints: [0, 0.5],
-      initialBreakpoint: 0.5
-    });
 
-    await modal.present();
-  }
-  async addMarkers2() {
-    const markers: Marker[] = [
-      {
-        coordinate: {
-          lat: 46.80013,
-          lng: 21.48749
-        }, title: 'Mego prodavnica',
-        snippet: 'Opis prodavnice'
-      },
-      {
-        coordinate: {
-          lat: 46.80013,
-          lng: 20.48749
-        }, title: 'Gigo prodavnica',
-        snippet: 'da'
-      }
-    ]
-    await this.map.addMarkers(markers);
-    this.map.setOnMarkerClickListener(async (marker) => {
-      const modal = await this.modalCtrl.create({
-        component: MapModalPage,
-        componentProps: {
-          marker,
-        },
-        breakpoints: [0, 0.4],
-        initialBreakpoint: 0.4,
-      });
-      modal.present();
-    });
-  }
+ 
 }

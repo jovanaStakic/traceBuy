@@ -25,13 +25,19 @@ export class Tab5Page implements OnInit {
   }
 
   async ngOnInit() {
+   this.initEveryThing();
+  }
+  async ionViewDidEnter(){
+    this.initEveryThing();
+  }
+  async initEveryThing(){
     try {
       this.email = await this.authService.getUserEmail();
       this.numOfOrders = await this.porudzbinaService.getNuberOfOrdersOfUser();
       this.uid = await this.authService.getUserId();
       await this.checkForProfileImage(); 
     } catch (error) {
-      console.error('Greška prilikom inicijalizacije:', error);
+      //console.log('Greška prilikom inita:', error);
     }
   }
   async checkForProfileImage() {
@@ -45,15 +51,12 @@ export class Tab5Page implements OnInit {
         const url = await getDownloadURL(profileImageRef);
         this.profileImageUrl = url; 
       } catch (error) {
-        console.error('Slika ne postoji ili došlo je do greške:', error);
+        //console.log("Nema profilne slike!")
       
       }
     }
   }
-  async logout(){
-    await this.authService.logout();
-    this.router.navigate(['/login']);
-  }
+ 
   uploadImage(event: any) {
     const file = event.target.files[0];
     if (file) {
@@ -61,19 +64,21 @@ export class Tab5Page implements OnInit {
         const storage = getStorage();
         const storageRef = ref(storage, `profileImages/${this.uid}/profilePicture.jpg`);
         uploadBytes(storageRef, file).then((snapshot) => {
-          console.log('Slika je uspešno uploadovana.');
+          //console.log('Slika JE UPLOADE.');
 
-          getDownloadURL(snapshot.ref).then((downloadURL) => {
-            this.profileImageUrl = downloadURL;
-            console.log('Download URL:', downloadURL);
+          getDownloadURL(snapshot.ref).then((downloadUrl) => {
+            this.profileImageUrl = downloadUrl;
           });
         }).catch((error) => {
-          console.error('Došlo je do greške pri uploadovanju slike:', error);
+         // console.error('gRESKA UPLOAD SLIKE:', error);
         });
       }
     }
   }
 
-  
+  async logout(){
+    await this.authService.logout();
+    this.router.navigate(['/login']);
+  }
 
 }

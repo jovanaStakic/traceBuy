@@ -19,11 +19,12 @@ import { DetailsModalPage } from '../details-modal/details-modal.page';
 })
 export class Tab4Page implements OnInit {
   porudzbine:Porudzbina[];
+ 
   constructor(private porudzbinaServis:PorudzbinaService,private modalCTRL:ModalController){
     this.porudzbine=[];
   }
 
- ngOnInit(): void {
+async ngOnInit() {
   addIcons(ionIcons);
 this.getPorudzbine();
  }
@@ -31,7 +32,9 @@ this.getPorudzbine();
   const por=await this.porudzbinaServis.getAllOrdersByUser();
   this.porudzbine=por;
  }
-
+async ionViewDidEnter(){
+  this.getPorudzbine();
+}
  async otvoriDetalje(porudzbina:Porudzbina){
   const modal = await this.modalCTRL.create({
     component: DetailsModalPage,

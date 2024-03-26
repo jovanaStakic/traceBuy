@@ -3,10 +3,13 @@
     <ion-title>Proizvodi</ion-title>
     <ion-button class="x-dugme" fill="clear" (click)="nazad()" ><ion-icon name="close-outline"></ion-icon></ion-button>
   </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar [(ngModel)]="searchQuery" (ngModelChange)="filterProizvodi()"></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-list *ngFor="let proizvod of proizvodi">
+  <ion-list *ngFor="let proizvod of filteredProizvodi">
     <ion-card>
       <div class="product-image-wrapper ">
       <img class="product-thumbnail" src="{{ proizvod.slika }}" alt="Slika Proizvoda"/>

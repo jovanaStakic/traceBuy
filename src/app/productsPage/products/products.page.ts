@@ -22,12 +22,19 @@ import { CardService } from 'src/app/services/card.service';
 export class ProductsPage implements OnInit {
   proizvodi!:Proizvod[];
   idProdavnice!:string;
-  slikaUrl!: Observable<string>;
+
   kolicina:number=1;
- 
+  filteredProizvodi: Proizvod[] = []; 
+  searchQuery: string = '';
   constructor(private dataService:ProdavniceDataService,private route:ActivatedRoute,
     private location:Location,private cardService:CardService
      ) {
+    
+    
+    addIcons(ionIcons);
+  }
+
+  ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.idProdavnice = params['id'];
       this.dataService.getProizvodiIzProdavnice(this.idProdavnice).then((proizvodi)=>{
@@ -35,21 +42,12 @@ export class ProductsPage implements OnInit {
         this.proizvodi.forEach((proizvod)=>{
           proizvod.kolicina=1;
         })
+        this.filteredProizvodi=proizvodi;
       })
      
     });
-    
-    addIcons(ionIcons);
   }
-
-  ngOnInit() {
-   
-   // this.slikaUrl = this.getSlikaUrl('gs://tracebuy-fd4ef.appspot.com/pexels-alex-kinkate-205926.jpg');
-  }
-  getSlikaUrl(gsUrl: string) {
-    //const storageRef = this.storage.refFromURL(gsUrl);
-    //return storageRef.getDownloadURL();
-  }
+  
   nazad() {
     this.location.back();
   }
@@ -64,5 +62,15 @@ export class ProductsPage implements OnInit {
   dodajUKorpu(proizvod:Proizvod){
     this.cardService.addProizvodToCard(proizvod);
     alert("Proizvod "+proizvod.naziv+" je dodat u korpu!");
+  }
+
+  filterProizvodi() {
+    if (this.searchQuery.trim()) {
+      this.filteredProizvodi = this.proizvodi.filter((proizvod) =>
+        proizvod.naziv.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+    } else {
+      this.filteredProizvodi = [...this.proizvodi];
+    }
   }
 }

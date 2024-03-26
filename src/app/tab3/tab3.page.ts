@@ -34,6 +34,15 @@ export class Tab3Page {
 
      idiNaPoruci(){
       this.router.navigate(['/order-form'],{ queryParams: { ukupno: this.ukupno } });
-      console.log("klik");
+     }
+
+     isprazniKorpu(){
+      if(this.proizvodi.length<1){
+        alert("Korpa je prazna!");
+      }else{
+      this.cardService.clearCard();
+      this.proizvodi=[];
+      this.ukupno=0;
+      }
      }
 }

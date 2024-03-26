@@ -54,13 +54,7 @@ export class LoginPage implements OnInit {
     }
   }
 
-  private async showLoadingIndictator() {
-    const loadingIndicator = await this.loadingController.create({
-      message: 'Opening login window...',
-    });
-    await loadingIndicator.present();
-    return loadingIndicator;
-  }
+  
   navigateToRegister(){
   this.router.navigate(["/register"]);
   }

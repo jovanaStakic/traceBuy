@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-item color="primary" *ngIf="porudzbine.length<1">Još uvek nema porudžbina! <ion-icon name="sad-outline"></ion-icon></ion-item>
+ 
 
   <ion-list *ngFor="let porudzbina of porudzbine">
     <ion-item  lines="full">
@@ -17,4 +17,5 @@
       </ion-button>
     </ion-item>
   </ion-list>
+  <ion-item color="primary" *ngIf="porudzbine.length<1">Još uvek nema porudžbina! <ion-icon name="sad-outline"></ion-icon></ion-item>
 </ion-content>

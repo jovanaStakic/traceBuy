@@ -1,3 +1,4 @@
+import { Proizvod } from "./prodavnica.model"
 
 export interface Porudzbina{
     id?:string,
@@ -9,7 +10,7 @@ export interface Porudzbina{
         telefon:string,
         email:string
     },
-    proizvodi:String[],
+    proizvodi:Proizvod[],
     iznosZaNaplatu:number,
     datumPoruzbine:Date,
     status:string

@@ -45,7 +45,9 @@ export class LoginPage implements OnInit {
     const user =await this.authService.login(this.credentials.value);
     await loading.dismiss();
     if(user){
+      
   this.router.navigate(['/tabs/tab1']);
+  this.credentials.reset();
     }else{
       this.showAlert('Prijavljivanje nije uspelo!','Probajte ponovo!');
   

@@ -5,9 +5,16 @@
 </ion-header>
 
 <ion-content>
-  <ion-list *ngFor="let p of porudzbine">
-  <ion-item>
-    {{p.userDetails.ime}} {{p.userDetails.prezime}} {{p.datumPoruzbine| date}}
-  </ion-item>
+  <ion-item color="primary" *ngIf="porudzbine.length<1">Još uvek nema porudžbina! <ion-icon name="sad-outline"></ion-icon></ion-item>
+
+  <ion-list *ngFor="let porudzbina of porudzbine">
+    <ion-item  lines="full">
+      <ion-label>
+        <h2>Datum porudžbine: {{ porudzbina.datumPoruzbine | date: 'medium' }}</h2>
+      </ion-label>
+      <ion-button fill="outline" slot="end" (click)="otvoriDetalje(porudzbina)">
+        DETALJI
+      </ion-button>
+    </ion-item>
   </ion-list>
 </ion-content>

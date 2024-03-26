@@ -31,6 +31,10 @@ export const routes: Routes = [
     path: 'order-form',
     loadComponent: () => import('./order-form/order-form.page').then( m => m.OrderFormPage)
   },
+  {
+    path: 'details-modal',
+    loadComponent: () => import('./details-modal/details-modal.page').then( m => m.DetailsModalPage)
+  },
 
   
 ];

@@ -84,4 +84,27 @@ export class PorudzbinaService {
     console.log(porudzbine);
     return porudzbine;
   }
+
+
+  getNuberOfOrdersOfUser(): Promise<number> {
+    return new Promise((resolve, reject) => {
+      const auth = getAuth();
+      onAuthStateChanged(auth, async (user) => {
+        if (user) {
+          try {
+            const ref = collection(this.firestore, "porudzbine");
+            const q = query(ref, where("userDetails.userId", "==", user.uid));
+            const querySnapshot = await getDocs(q);
+            resolve(querySnapshot.docs.length); 
+          } catch (error) {
+            reject(error);
+          }
+        } else {
+          reject("Korisnik nije projavljen!"); 
+        }
+      });
+    });
+  }
 }
+
+

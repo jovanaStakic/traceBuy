@@ -8,6 +8,7 @@ import { CardService } from '../services/card.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PorudzbinaService } from '../services/porudzbina.service';
 import { Porudzbina } from '../domain/porudzbina';
+import { Proizvod } from '../domain/prodavnica.model';
 
 @Component({
   selector: 'app-order-form',
@@ -38,7 +39,7 @@ export class OrderFormPage implements OnInit {
   }
   poruci() {
     if(this.userInfo.valid){
-    let  proizvodiId: String[] = this.cardService.proizvodi.map(proizvod => proizvod.id);
+    let  proizvodi: Proizvod[] = this.cardService.proizvodi;
  
     const porudzbina: Porudzbina = {
       
@@ -50,7 +51,7 @@ export class OrderFormPage implements OnInit {
         telefon: this.userInfo.get('telefon')?.value,
         email: this.userInfo.get('email')?.value,
       },
-      proizvodi: proizvodiId,
+      proizvodi: proizvodi,
       iznosZaNaplatu: this.ukupanIznos, 
       datumPoruzbine: new Date(),
       status: 'u obradi' 
